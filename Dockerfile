@@ -60,7 +60,7 @@ RUN set -xe \
         https://imapsync.lamiral.info/prerequisites_imapsync \
         https://raw.githubusercontent.com/google/gmail-oauth2-tools/master/python/oauth2.py \
   && chmod +x imapsync oauth2.py \
-  && chmod +x /usr/local/bin/docker-entrypoint.sh \
+  && chmod +x /usr/local/bin/docker-entrypoint.sh /app/web/serve.py \
   && chown -R nobody:nogroup /app/web
 
 USER nobody:nogroup
