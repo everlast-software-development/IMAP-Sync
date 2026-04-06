@@ -1,0 +1,5 @@
+# Optional: deploy with Coolify "Docker Compose" build pack (uses ./Dockerfile).
+services:
+  imapsync:
+    build: .
+    restart: "no"
