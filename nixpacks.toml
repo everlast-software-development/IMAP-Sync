@@ -36,6 +36,7 @@ aptPkgs = [
   "liburi-perl",
   "libwww-perl",
   "procps",
+  "python3",
   "wget",
   "make",
   "cpanminus",
@@ -52,4 +53,4 @@ cmds = [
 ]
 
 [start]
-cmd = "/usr/bin/imapsync"
+cmd = "sh -c 'exec python3 -m http.server \"${PORT:-3000}\" --bind 0.0.0.0 --directory /app/web'"

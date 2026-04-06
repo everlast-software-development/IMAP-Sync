@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IMAP Sync (imapsync)</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 42rem; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; color: #1a1a1a; }
+    code { background: #f4f4f4; padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.95em; }
+    pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; border-radius: 6px; font-size: 0.85rem; }
+    a { color: #0b57d0; }
+  </style>
+</head>
+<body>
+  <h1>IMAP Sync</h1>
+  <p>This service runs <strong>imapsync</strong> in a container. The website only confirms the deployment is up.</p>
+  <p>To run a migration, use <code>docker exec</code> (or <code>docker run</code>) with your host, users, and passwords — not this URL.</p>
+  <p>Example:</p>
+  <pre>docker exec -it &lt;container&gt; /usr/bin/imapsync \
+  --host1 imap.source.example --user1 you --password1 secret \
+  --host2 imap.dest.example --user2 you --password2 secret</pre>
+  <p>Documentation: <a href="https://imapsync.lamiral.info/">imapsync.lamiral.info</a></p>
+</body>
+</html>

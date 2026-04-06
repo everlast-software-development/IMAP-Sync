@@ -8,10 +8,13 @@ LABEL maintainer="Gilles LAMIRAL <gilles@lamiral.info>" \
       documentation="https://imapsync.lamiral.info/#doc"
 
 COPY Dockerfile imapsync INSTALL.d/prerequisites_imapsync /
+COPY web/ /app/web/
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 RUN set -xe && \
   apt-get update \
   && apt-get install -y \
+  python3 \
   libauthen-ntlm-perl \
   libcgi-pm-perl \
   libcrypt-openssl-rsa-perl \
@@ -56,7 +59,9 @@ RUN set -xe \
   && wget -N --no-check-certificate https://imapsync.lamiral.info/imapsync \
         https://imapsync.lamiral.info/prerequisites_imapsync \
         https://raw.githubusercontent.com/google/gmail-oauth2-tools/master/python/oauth2.py \
-  && chmod +x imapsync oauth2.py
+  && chmod +x imapsync oauth2.py \
+  && chmod +x /usr/local/bin/docker-entrypoint.sh \
+  && chown -R nobody:nogroup /app/web
 
 USER nobody:nogroup
 
@@ -66,4 +71,5 @@ WORKDIR /var/tmp/
 
 STOPSIGNAL SIGINT
 
-CMD ["/usr/bin/imapsync"]
+# HTTP on $PORT (Coolify default 3000) so the reverse proxy gets a real response; run imapsync via docker exec/run.
+CMD ["/usr/local/bin/docker-entrypoint.sh"]
